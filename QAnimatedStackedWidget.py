@@ -77,13 +77,13 @@ class QAnimatedStackedWidget(QStackedWidget):
         self.animGroup = QParallelAnimationGroup()
         self.animGroup.addAnimation(animnow)
         self.animGroup.addAnimation(animnext)
-        self.animGroup.finished.connect(self.animationDoneSlot)
+        self.animGroup.finished.connect(self.__animationDoneSlot)
         self.animGroup.start()
 
         self.next = next
         self.now = now
 
-    def animationDoneSlot(self):
+    def __animationDoneSlot(self):
         self.setCurrentIndex(self.next)
         self.widget(self.now).hide()
         self.widget(self.now).move(self.pointNow)
